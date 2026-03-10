@@ -10,13 +10,13 @@ import java.util.Scanner;
  */
 // Class attributes
 public class Login {
-private static String enteredUsername;
-private static String enteredPassword;
-private static String username;
-private static String cellnumber;
-private static String password;
-private static String firstname;       
-private static String lastname;       
+private String enteredUsername;
+private String enteredPassword;
+private String username;
+private String cellnumber;
+private String password;
+private String firstname;       
+private String lastname;       
         
 
 //Constructor with initialzed attributes
@@ -32,7 +32,7 @@ this.lastname = lastname;
  
 //Method (loop) preventing firstname and lastname being empty 
 
-public static String checkFirstName(String firstname){
+public String checkFirstName(String firstname){
             Scanner scanner = new Scanner(System.in);
         
   System.out.println("\nEnter your firstname:");
@@ -52,7 +52,7 @@ public static String checkFirstName(String firstname){
         System.out.println("\nfirstname captured");return firstname;}
 }
 
-public static String checkLastName(String lastname){
+public String checkLastName(String lastname){
            Scanner scanner = new Scanner(System.in);
         
   System.out.println("\nEnter your lastname:");
@@ -74,7 +74,7 @@ public static String checkLastName(String lastname){
 
 //Username format check
 
-public static boolean checkUsername(String username){
+public boolean checkUsername(String username){
        
   if (username.length() == 5 &&
       username.contains("_") &&
@@ -89,7 +89,7 @@ public static boolean checkUsername(String username){
  
 //Basic regular expression for the cellphone nuumber - coded by Meta AI - simpilfied by me for ease of use 
 
-public static boolean checkCellnumber(String cellnumber){
+public boolean checkCellnumber(String cellnumber){
  
  if (cellnumber.matches("^\\+27\\d{10}$") ) {
         
@@ -101,7 +101,7 @@ public static boolean checkCellnumber(String cellnumber){
 }
 
 //Password format check
-public static boolean checkPassword(String password){
+public boolean checkPassword(String password){
 
 if (password.length() == 8 &&
     password.matches(".*[A-Z]*.") &&
@@ -117,7 +117,7 @@ if (password.length() == 8 &&
 
 //Overloaded method for registering the username
 
-public static String registerUser(String username){
+public String registerUser(String username){
 if(!checkUsername(username)){System.out.println("\nIncorret username format: ensure it is 5 characters and contains an underscore");}
 else {System.out.println("\nUSERNAME SUCCESSFULLY CAPTURED");}return username;
     
@@ -125,7 +125,7 @@ else {System.out.println("\nUSERNAME SUCCESSFULLY CAPTURED");}return username;
 
 //Overloaded method for registering the cellphone number
 
-public static String registerUser(String cellnumber,String username){
+public String registerUser(String cellnumber,String username){
 if(!checkCellnumber(cellnumber)){System.out.println("\nIncorrect cellphone number format: ensure it contains national code and is 10 digits");}
 else {System.out.println("\nCELLPHONE NUMBER SUCCESSFULLY CAPTURED");}return cellnumber;
 
@@ -133,7 +133,7 @@ else {System.out.println("\nCELLPHONE NUMBER SUCCESSFULLY CAPTURED");}return cel
 
 //Overloaded method for registering password
 
-public static String registerUser(String password,String username,String cellnumber){
+public String registerUser(String password,String username,String cellnumber){
 if(!checkPassword(password)){System.out.println("\nIncorrect password format: ensure it contains a capital letter,numbers,special characters and is 8 characters in length");}
 else {System.out.println("PASSWORD SUCCESSFULLY CAPTURED");}return password;
 
@@ -141,7 +141,7 @@ else {System.out.println("PASSWORD SUCCESSFULLY CAPTURED");}return password;
 
 //Overloaded method for confirmation of successfull registration or failed registration 
 
-public static String registerUser(String username,String cellnumber,String password,String firstname,String lastname,boolean isRegistered){
+public String registerUser(String username,String cellnumber,String password,String firstname,String lastname,boolean isRegistered){
 if(checkPassword(password)&&checkCellnumber(cellnumber)&&checkUsername(username)){System.out.println("\nRegistration successfull");isRegistered = true;}
 else{System.out.println("\nRegistration UNSUCESSFUL : please fix the errors");isRegistered = false;}  
 
@@ -150,7 +150,7 @@ return firstname;
 
 //Method for logging in the user upon succesfull registration
 
-public static boolean loginUser(String enteredUsername, String username, String password,String enteredPassword) {
+public boolean loginUser(String enteredUsername, String username, String password,String enteredPassword) {
     Scanner scanner = new Scanner(System.in);
     
 System.out.println("\nEnter your Username to login");
@@ -168,7 +168,7 @@ enteredPassword = scanner.nextLine();
 
 //Method confirming successful or failed login along with greeting the user if the login is succesful 
 
-public static String returnLoginStatus(String enteredUsername, String username, String password,String enteredPassword,String firstname,String lastname){
+public String returnLoginStatus(String enteredUsername, String username, String password,String enteredPassword,String firstname,String lastname){
 
     if(!loginUser(enteredUsername,username,password,enteredPassword)){System.out.println("\nLogin unsucessful");
        
