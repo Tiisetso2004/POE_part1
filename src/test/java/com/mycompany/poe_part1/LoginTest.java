@@ -16,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author RC_Student_lab
  */
 public class LoginTest {
+
+    private final Login login = new Login("", "", "", "", "", "", "");
     
     public LoginTest() {
     }
@@ -44,7 +46,7 @@ public class LoginTest {
         System.out.println("checkFirstName");
         String firstname = "";
         String expResult = "";
-        String result = Login.checkFirstName(firstname);
+        String result = login.checkFirstName(firstname);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -58,7 +60,7 @@ public class LoginTest {
         System.out.println("checkLastName");
         String lastname = "";
         String expResult = "";
-        String result = Login.checkLastName(lastname);
+        String result = login.checkLastName(lastname);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -72,7 +74,7 @@ public class LoginTest {
         System.out.println("checkUsername");
         String username = "";
         boolean expResult = false;
-        boolean result = Login.checkUsername(username);
+        boolean result = login.checkUsername(username);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -86,7 +88,7 @@ public class LoginTest {
         System.out.println("checkCellnumber");
         String cellnumber = "";
         boolean expResult = false;
-        boolean result = Login.checkCellnumber(cellnumber);
+        boolean result = login.checkCellnumber(cellnumber);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -100,7 +102,7 @@ public class LoginTest {
         System.out.println("checkPassword");
         String password ="";
         boolean expResult = false;
-        boolean result = Login.checkPassword(password);
+        boolean result = login.checkPassword(password);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -114,7 +116,7 @@ public class LoginTest {
         System.out.println("registerUser");
         String username = "";
         String expResult = "";
-        String result = Login.registerUser(username);
+        String result = login.registerUser(username);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -129,7 +131,7 @@ public class LoginTest {
         String cellnumber = "";
         String username = "";
         String expResult = "";
-        String result = Login.registerUser(cellnumber, username);
+        String result = login.registerUser(cellnumber, username);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -145,7 +147,7 @@ public class LoginTest {
         String username = "";
         String cellnumber = "";
         String expResult = "";
-        String result = Login.registerUser(password, username, cellnumber);
+        String result = login.registerUser(password, username, cellnumber);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -164,7 +166,7 @@ public class LoginTest {
         String lastname = "";
         boolean isRegistered = false;
         String expResult = "";
-        String result = Login.registerUser(username, cellnumber, password, firstname, lastname, isRegistered);
+        String result = login.registerUser(username, cellnumber, password, firstname, lastname, isRegistered);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -181,7 +183,7 @@ public class LoginTest {
         String password = "";
         String enteredPassword = "";
         boolean expResult = false;
-        boolean result = Login.loginUser(enteredUsername, username, password, enteredPassword);
+        boolean result = login.loginUser(enteredUsername, username, password, enteredPassword);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -200,7 +202,7 @@ public class LoginTest {
         String firstname = "";
         String lastname = "";
         String expResult = "";
-        String result = Login.returnLoginStatus(enteredUsername, username, password, enteredPassword, firstname, lastname);
+        String result = login.returnLoginStatus(enteredUsername, username, password, enteredPassword, firstname, lastname);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

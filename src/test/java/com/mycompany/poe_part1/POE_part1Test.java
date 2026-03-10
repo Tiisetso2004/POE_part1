@@ -13,20 +13,22 @@ import org.junit.jupiter.api.Test;
 
 public class POE_part1Test {
 
+    private final Login login = new Login("", "", "", "", "", "", "");
+
     // --- Tests for Validation Methods Without Interactive Input ---
 
     @Test
     public void testCheckUsername_Success() {
         // A valid username: 5 characters, contains underscore, contains lower-case letter(s)
         String validUsername = "ab_cd";
-        assertTrue(Login.checkUsername(validUsername));
+        assertTrue(login.checkUsername(validUsername));
     }
     
     @Test
     public void testCheckUsername_Failure() {
         // Fail because no underscore, or wrong length
         String invalidUsername = "abcde";
-        assertFalse(Login.checkUsername(invalidUsername));
+        assertFalse(login.checkUsername(invalidUsername));
     }
     
     @Test
@@ -34,13 +36,13 @@ public class POE_part1Test {
         // A valid cell number must begin with +27 and be followed by exactly 10 digits.
         // For instance: +271234567890
         String validCellnumber = "+271234567890";
-        assertTrue(Login.checkCellnumber(validCellnumber));
+        assertTrue(login.checkCellnumber(validCellnumber));
     }
     
     @Test
     public void testCheckCellnumber_Failure() {
         String invalidCellnumber = "0123456789";
-        assertFalse(Login.checkCellnumber(invalidCellnumber));
+        assertFalse(login.checkCellnumber(invalidCellnumber));
     }
     
     @Test
@@ -49,14 +51,14 @@ public class POE_part1Test {
         // one special character from the set [~!@#$%^&*()_+=-`?><,./';:] and one digit.
         // Using "A1@bcdef" (8 characters) as a test string.
         String validPassword = "A1@bcdef";
-        assertTrue(Login.checkPassword(validPassword));
+        assertTrue(login.checkPassword(validPassword));
     }
     
     @Test
     public void testCheckPassword_Failure() {
         // 7-character string should fail.
         String invalidPassword = "A1@bcde";  
-        assertFalse(Login.checkPassword(invalidPassword));
+        assertFalse(login.checkPassword(invalidPassword));
     }
     
     // --- Tests for Overloaded registerUser Methods (non-interactive) ---
@@ -65,21 +67,21 @@ public class POE_part1Test {
     public void testRegisterUserUsername() {
         String validUsername = "ab_cd";
         // Method prints a message then returns the same username.
-        String returnedUsername = Login.registerUser(validUsername);
+        String returnedUsername = login.registerUser(validUsername);
         assertEquals(validUsername, returnedUsername);
     }
     
     @Test
     public void testRegisterUserCellnumber() {
         String validCellnumber = "+271234567890";
-        String returnedCellnumber = Login.registerUser(validCellnumber, "ab_cd");
+        String returnedCellnumber = login.registerUser(validCellnumber, "ab_cd");
         assertEquals(validCellnumber, returnedCellnumber);
     }
     
     @Test
     public void testRegisterUserPassword() {
         String validPassword = "A1@bcdef";
-        String returnedPassword = Login.registerUser(validPassword, "ab_cd", "+271234567890");
+        String returnedPassword = login.registerUser(validPassword, "ab_cd", "+271234567890");
         assertEquals(validPassword, returnedPassword);
     }
     
@@ -92,7 +94,7 @@ public class POE_part1Test {
         String lastname = "Doe";
         boolean isRegistered = false;
         // This method prints a message and returns the firstname.
-        String returnedFirstName = Login.registerUser(username, cellnumber, password, firstname, lastname, isRegistered);
+        String returnedFirstName = login.registerUser(username, cellnumber, password, firstname, lastname, isRegistered);
         assertEquals(firstname, returnedFirstName);
     }
     
@@ -107,7 +109,7 @@ public class POE_part1Test {
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
             // Call method; it prompts but then reads our simulated input.
-            String name = Login.checkFirstName("");
+            String name = login.checkFirstName("");
             assertEquals("Alice", name);
         } finally {
             System.setIn(originalIn);
@@ -121,7 +123,7 @@ public class POE_part1Test {
         InputStream originalIn = System.in;
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-            String name = Login.checkLastName("");
+            String name = login.checkLastName("");
             assertEquals("Smith", name);
         } finally {
             System.setIn(originalIn);
@@ -138,7 +140,7 @@ public class POE_part1Test {
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
             // Pass empty strings for enteredUsername/Password; they will be overwritten by scanner input
-            boolean result = Login.loginUser("", "ab_cd", "A1@bcdef", "");
+            boolean result = login.loginUser("", "ab_cd", "A1@bcdef", "");
             assertTrue(result);
         } finally {
             System.setIn(originalIn);
@@ -152,7 +154,7 @@ public class POE_part1Test {
         InputStream originalIn = System.in;
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-            boolean result = Login.loginUser("", "ab_cd", "A1@bcdef", "");
+            boolean result = login.loginUser("", "ab_cd", "A1@bcdef", "");
             assertFalse(result);
         } finally {
             System.setIn(originalIn);
@@ -167,7 +169,7 @@ public class POE_part1Test {
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
             // returnLoginStatus prints a message and returns the password
-            String returned = Login.returnLoginStatus("", "ab_cd", "A1@bcdef", "", "John", "Doe");
+            String returned = login.returnLoginStatus("", "ab_cd", "A1@bcdef", "", "John", "Doe");
             // We expect the method returns the provided password ("A1@bcdef")
             assertEquals("A1@bcdef", returned);
         } finally {
@@ -182,7 +184,7 @@ public class POE_part1Test {
         InputStream originalIn = System.in;
         try {
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-            String returned = Login.returnLoginStatus("", "ab_cd", "A1@bcdef", "", "John", "Doe");
+            String returned = login.returnLoginStatus("", "ab_cd", "A1@bcdef", "", "John", "Doe");
             // Regardless of login failure, the method returns the provided password.
             // We are verifying that the method's output remains consistent.
             assertEquals("A1@bcdef", returned);
